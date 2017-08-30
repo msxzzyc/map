@@ -36,14 +36,23 @@
         
         /**-----  iOS8.0+定位适配  ----*/
 //        if ([[UIDevice currentDevice].systemName floatValue]>=8.0) {
+//           
+//            //前台定位授权（默认不可以在后台获取位置，后台需在target中勾选location update，且会出现蓝条）
+////            [_lM requestWhenInUseAuthorization];
+//            
+//            
 //            //前后台定位授权（请求永久授权）
 //            [_lM requestAlwaysAuthorization];
-//            //前台定位授权（默认不可以在后台获取位置，后台需在target中勾选location update，且会出现蓝条）
-//            //        [_lM requestWhenInUseAuthorization];
+//           
 //        }
+        //允许后台获取用户位置（iOS9.0）
+        if ([[UIDevice currentDevice].systemName floatValue]>=9.0){
+            //必须勾选location update，否则会崩溃
+            _lM.allowsBackgroundLocationUpdates = YES;
+        }
         if ([_lM respondsToSelector:@selector(requestAlwaysAuthorization)] || [_lM respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
             //前台定位授权（默认不可以在后台获取位置，后台需在target中勾选location update，且会出现蓝条）如果+authorizationStatus != kCLAuthorizationStatusNotDetermined ，该方法不调用
-            [_lM requestWhenInUseAuthorization];
+//            [_lM requestWhenInUseAuthorization];
             //前后台定位授权（请求永久授权） 如果+authorizationStatus != kCLAuthorizationStatusNotDetermined ，该方法不调用
             //当前授权状态为前台授权时，此方法也会调用
             [_lM requestAlwaysAuthorization];
@@ -78,7 +87,7 @@
 {
     NSLog(@"定位到了");
     //停止更新
-    [manager stopUpdatingLocation];
+//    [manager stopUpdatingLocation];
 }
 /**
  *  当用户授权状态发生变化时调用
