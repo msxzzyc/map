@@ -46,7 +46,7 @@
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<string></string>
-	<key>NSLocationUsageDescription</key>
+	<key>NSLocationAlwaysUsageDescription</key>
 	<string>iOS8.0+前后台定位说明</string>
 </dict>
 </plist>
